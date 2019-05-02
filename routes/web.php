@@ -16,6 +16,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'QuestionsController@index')->name('questions-index');
 Route::post('/user-profile', 'UsersController@index')->name('user-profile');
+Route::get('/profile', 'UsersController@profile')->name('profile');
 Route::post('/view-question', 'QuestionsController@show')->name('view-question');
 Route::post('/add-comment', 'CommentsController@index')->name('add-comment');
 Route::post('/send-message', 'MessagesController@index')->name('send-message');
@@ -25,8 +26,13 @@ Route::post('/profile-update', 'UsersController@update')->name('profile-update')
 Route::get('user-profile/{id}', 'UsersController@show')->name('user-profile');
 Route::get('read-message/{id}', 'MessagesController@read')->name('read-message');
 Route::post('/update-question', 'QuestionsController@update')->name('update-question');
-Route::post('delete-question/{id}', 'QuestionsController@destroy')->name('delete-question');
+Route::get('delete-question/{id}', 'QuestionsController@destroy')->name('delete-question');
+
+Route::group(['middleware'=>['web', 'auth']],function (){
 Route::get('/zc-admin', 'AdminsController@index')->name('admin');
+Route::get('/questions', 'AdminsController@questions')->name('questions-admin');
+Route::get('/show-question', 'AdminsController@show')->name('show-question');
+});
 /*
 
 Route::resource('questions', QuestionsController);

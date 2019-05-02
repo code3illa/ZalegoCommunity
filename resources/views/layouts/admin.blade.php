@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@if(Auth::user()->admin==1)
+        @else
+        <script type="text/javascript">
+            window.location = "{{ url('/') }}"
+        </script>
+@endif
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
     <meta charset="utf-8" />
@@ -29,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand waves-effect waves-dark" href="index.html"><i class="large material-icons">track_changes</i> <strong>target</strong></a>
+                <a class="navbar-brand waves-effect waves-dark" href="">ZalegoCommunity</a>
 				
 		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
             </div>
@@ -45,8 +51,6 @@
 <ul id="dropdown1" class="dropdown-content">
 <li><a href="#"><i class="fa fa-user fa-fw"></i> My Profile</a>
 </li>
-<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-</li> 
 <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 </li>
 </ul>
@@ -233,73 +237,45 @@
                     </li>
 
 
-                    <li>
-                        <a href="#" class="waves-effect waves-dark"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Second Level Link</a>
-                            </li>
-                            <li>
-                                <a href="#">Second Level Link</a>
-                            </li>
-                            <li>
-                                <a href="#">Second Level Link<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">Third Level Link</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Link</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Link</a>
-                                    </li>
 
-                                </ul>
-
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="empty.html" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Empty Page</a>
-                    </li>
                 </ul>
 
             </div>
 
         </nav>
         <!-- /. NAV SIDE  -->
-      
+
 
 
         @yield('content')
       
         <!-- /. PAGE WRAPPER  -->
     </div>
+
     <!-- /. WRAPPER  -->
     <!-- JS Scripts-->
     <!-- jQuery Js -->
-    <script src="admin/assets/js/jquery-1.10.2.js"></script>
+    <script src="../admin/assets/js/jquery-1.10.2.js"></script>
 	
 	<!-- Bootstrap Js -->
-    <script src="admin/assets/js/bootstrap.min.js"></script>
+    <script src="../admin/assets/js/bootstrap.min.js"></script>
 	
-	<script src="admin/assets/materialize/js/materialize.min.js"></script>
+	<script src="../admin/assets/materialize/js/materialize.min.js"></script>
 	
     <!-- Metis Menu Js -->
-    <script src="admin/assets/js/jquery.metisMenu.js"></script>
+    <script src="../admin/assets/js/jquery.metisMenu.js"></script>
     <!-- Morris Chart Js -->
-    <script src="admin/assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="admin/assets/js/morris/morris.js"></script>
+    <script src="../admin/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="../admin/assets/js/morris/morris.js"></script>
 	
 	
-	<script src="admin/assets/js/easypiechart.js"></script>
-	<script src="admin/assets/js/easypiechart-data.js"></script>
+	<script src="../admin/assets/js/easypiechart.js"></script>
+	<script src="../admin/assets/js/easypiechart-data.js"></script>
 	
-	 <script src="admin/assets/js/Lightweight-Chart/jquery.chart.js"></script>
+	 <script src="../admin/assets/js/Lightweight-Chart/jquery.chart.js"></script>
 	
     <!-- Custom Js -->
-    <script src="admin/assets/js/custom-scripts.js"></script>
+    <script src="../admin/assets/js/custom-scripts.js"></script>
  
 
 </body>

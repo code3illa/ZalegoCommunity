@@ -52,11 +52,23 @@ class QuestionsController extends Controller
 
 
         ]]);
+
+        $id = DB::getPdo()->lastInsertId();
+        /**
         $questions = DB::table('users')
             ->join('questions', 'users.id', '=', 'questions.user_id')
             ->select('users.id as uid', 'users.profpic as profpic', 'users.name as name', 'questions.id as qid', 'questions.title as title', 'questions.question as question', 'questions.created_at as created_at')->orderBy('questions.created_at', 'desc')
             ->paginate(5);
         return view('questions.index', ['questions'=> $questions]);
+**/
+
+
+        $questions = DB::table('questions')
+            ->join('users', 'users.id', '=', 'questions.user_id')
+            ->where('questions.id', '=', $id)
+            ->select('users.id as uid', 'users.profpic as profpic', 'users.name as name', 'questions.id as qid', 'questions.title as title', 'questions.question as question', 'questions.created_at as created_at')->get();
+        $comments = DB::select("SELECT * FROM comments WHERE question_id=$id");
+        return view('questions.show', ['questions'=> $questions], ['comments'=> $comments]);
 
     }
 
@@ -151,6 +163,6 @@ class QuestionsController extends Controller
 
         $quiz = Question::find($id);
         $quiz->delete();
-        return view('/');
+        return redirect('/');
     }
 }

@@ -139,4 +139,13 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function profile(){
+        $id = Auth::user()->id;
+        $users = DB::select("SELECT * FROM users WHERE id=$id");
+
+        $questions = DB::select("SELECT * FROM questions WHERE user_id=$id");
+        return view('users.index', ['users'=> $users, 'questions'=> $questions]);
+
+    }
 }
