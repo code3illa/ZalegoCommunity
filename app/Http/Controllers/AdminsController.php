@@ -7,6 +7,7 @@ use App\Question;
 use App\User;
 use App\Comment;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AdminsController extends Controller
 {
@@ -45,5 +46,28 @@ class AdminsController extends Controller
         $comments = DB::select("SELECT * FROM comments WHERE question_id=$quiz");
         return view('admin.show', ['questions'=> $questions], ['comments'=> $comments]);
 
+    }
+
+    public function comment(Request $request){
+        $quiz = $request->input('quiz_id');
+        $comment = $request->input('comment');
+        $name = Auth::user()->name;
+        $user_id = Auth::user()->id;
+
+        DB::table('comments')->insert([[
+            'name'=>$name,
+            'comment'=>$comment,
+            'user_id'=>$user_id,
+            'question_id'=>$quiz,
+
+        ]]);
+
+        //return redirect('/view-question')
+        $questions = DB::table('questions')
+            ->join('users', 'users.id', '=', 'questions.user_id')
+            ->where('questions.id', '=', $quiz)
+            ->select('users.id as uid', 'users.profpic as profpic', 'users.name as name', 'questions.id as qid', 'questions.title as title', 'questions.question as question', 'questions.created_at as created_at')->get();
+        $comments = DB::select("SELECT * FROM comments WHERE question_id=$quiz");
+        return view('admin.show', ['questions'=> $questions], ['comments'=> $comments]);
     }
 }

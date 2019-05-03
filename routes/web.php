@@ -31,7 +31,8 @@ Route::get('delete-question/{id}', 'QuestionsController@destroy')->name('delete-
 Route::group(['middleware'=>['web', 'auth']],function (){
 Route::get('/zc-admin', 'AdminsController@index')->name('admin');
 Route::get('/questions', 'AdminsController@questions')->name('questions-admin');
-Route::get('/show-question', 'AdminsController@show')->name('show-question');
+Route::post('/show-question', 'AdminsController@show')->name('show-question');
+Route::post('/post-comment', 'AdminsController@comment')->name('post-comment');
 });
 /*
 

@@ -36,7 +36,7 @@
                                             <a class="mr-2" href="{{ route('user-profile', $question->uid) }}"><button type="submit" class="buttontext" style="font-family: 'Century Schoolbook L'; color: #1d68a7;"><span class="dot"></span>&nbsp;{{ $question->name }}</button></a>
                                             <small class="text-muted">Created: {{ $question->created_at }}</small>
                                         </div>
-                                        <form method="post" action="{{url('/view-question')}}">
+                                        <form method="post" action="{{url('/show-question')}}">
                                             @csrf
                                             <input type="hidden" name="quiz_id" value="{{ $question->qid }}">
                                             <h2><a class="article-title" href=""><button type="submit" class="buttontext">{{ $question->title }}</button></a></h2>

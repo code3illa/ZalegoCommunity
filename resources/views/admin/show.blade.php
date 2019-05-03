@@ -121,7 +121,7 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <form class="form-horizontal" action="{{ url('/add-comment') }}" method="POST" enctype="multipart/form-data">
+                                            <form class="form-horizontal" action="{{ url('/post-comment') }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="quiz_id" value="{{ $quiz->qid }}">
                                                 <div class="form-group">
