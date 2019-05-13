@@ -1,13 +1,4 @@
-@if(Auth::user()->admin==1)
-    <script type="text/javascript">
-        window.location = "{{ url('/zc-admin') }}"
-    </script>
-@else
-
-@endif
-
 @extends('layouts.app')
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css">
 @section('content')

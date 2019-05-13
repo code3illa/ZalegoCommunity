@@ -6,6 +6,7 @@ use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\DocBlock\Tags\Method;
 
 class CommentsController extends Controller
 {
@@ -103,8 +104,18 @@ class CommentsController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function delete($id, $quiz)
     {
-        //
+        DB::delete("DELETE FROM comments WHERE id=$id");
+
+        /*
+        $questions = DB::table('questions')
+            ->join('users', 'users.id', '=', 'questions.user_id')
+            ->where('questions.id', '=', $quiz)
+            ->select('users.id as uid', 'users.profpic as profpic', 'users.name as name', 'questions.id as qid', 'questions.title as title', 'questions.question as question', 'questions.created_at as created_at')->get();
+        $comments = DB::select("SELECT * FROM comments WHERE question_id=$quiz");
+        return view('questions.show', ['questions'=> $questions], ['comments'=> $comments]);
+        */
+        return redirect('/');
     }
 }

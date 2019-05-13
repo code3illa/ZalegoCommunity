@@ -1,4 +1,8 @@
 @extends('layouts.app')
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
 <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css">
 
 @section('content')
@@ -17,7 +21,7 @@
 
                         @if(Auth::id()==($quiz->uid))
                         <a class="btn btn-outline-info btn-sn mt-1 mb-1" href="" data-toggle="modal" data-target="#quizUpdate">Update</a>
-                        <a class="btn btn-outline-danger btn-sn mt-1 mb-1" href='delete-question/{{ $quiz->qid }}'>Delete</a>
+                        <a class="btn btn-outline-danger btn-sn mt-1 mb-1" href='delete-question/{{ $quiz->qid }}' onclick='return confirm("Are you sure you want to Delete this Question?")'>Delete</a>
 
                             <!-- Modal -->
                             <div id="quizUpdate" class="modal fade" role="dialog">
@@ -74,9 +78,19 @@
                 <form method="post" action="{{url('/user-profile')}}">
                     @csrf
                 <input type="hidden" name="user_id" value="{{ $comment->user_id }}">
-                    <p style="margin-bottom: 1px; border-bottom: 1px;">{{ $comment->comment }} - <a class="mr-2" href=""><button type="submit" class="buttontext">{{ $comment->name }}</button></a></p>
-                    <hr>
                 </form>
+
+                    <div style="margin-bottom: 1px; border-bottom: 1px;">{{ $comment->comment }} -
+                        <a class="mr-2" href="">
+                            <button type="submit" class="buttontext">{{ $comment->name }}</button>
+                        </a>
+                        @if(Auth::user()->id == $comment->user_id)
+                       <!-- <a href="" class="btn btn-info btn-sm float-right mx-1"><i class="fas fa-edit"></i> </a>-->
+                        <a href='delete-comment/{{ $comment->id }}/{{ $quiz->qid }}' onclick='return confirm("Are you sure you want to Delete this Comment?")' class="btn btn-danger btn-sm float-right mx-1"><i class="fas fa-trash"></i> </a>
+                        @endif
+                    </div>
+                    <hr>
+
                 <div class="">
 
                 </div>

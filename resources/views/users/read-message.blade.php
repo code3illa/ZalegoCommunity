@@ -60,15 +60,16 @@
                                 <div class="panel-body ">
 
 
-                                            <div class="col-sm-12">
-                                            <table class="table">
-                                            @foreach($message as $sms)
-                                                <tr>
-                                                <form method="post" action="{{url('/user-profile')}}">
-                                                    @csrf
-                                                    <input type="hidden" name="user_id" value="{{ $sms->user_id }}">
-                                                    <td><a class="mr-2" href=""><button type="submit" class="buttontext">{{ $sms->name }}</button></a></td>
-                                                </form>
+                        <div class="col-sm-12">
+                            <div class="card card-body">
+                                <table class="table">
+                        @foreach($message as $sms)
+                            <tr>
+                            <form method="post" action="{{url('/user-profile')}}">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ $sms->user_id }}">
+                                <td><a class="mr-2" href=""><button type="submit" class="buttontext">{{ $sms->name }}</button></a></td>
+                            </form>
 
                                     <td>
                                     <div class="view-mail">
@@ -91,6 +92,7 @@
                                 </td>
                                         </tr>
                                     </table>
+                                            </div>
                                             </div>
 
 

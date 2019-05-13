@@ -1,3 +1,12 @@
+@if(!Auth::guest())
+    @if(Auth::user()->admin==1)
+        <script type="text/javascript">
+            window.location = "{{ url('/zc-admin') }}"
+        </script>
+    @else
+
+    @endif
+        @endif
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -6,6 +15,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -19,6 +30,10 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="{{{ asset('img/favicon.png') }}}">
 </head>
 <body>
@@ -82,7 +97,7 @@
 
                                             <div class="form-group">
                                                 <label class="">Question:</label>
-                                                <textarea rows="7" class="form-control" name="question" required ></textarea>
+                                                <textarea rows="7" class="form-control" name="question" required  placeholder="Post a Question..."></textarea>
                                             </div>
 
                                             <div class="form-group">
